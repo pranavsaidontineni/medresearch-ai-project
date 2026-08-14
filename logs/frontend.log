@@ -3,11 +3,7 @@
 > vite --host 0.0.0.0
 
 
-  VITE v7.1.3  ready in 102 ms
+  VITE v7.1.3  ready in 120 ms
 
   ➜  Local:   http://localhost:5173/
   ➜  Network: http://192.168.1.15:5173/
-  ➜  Network: http://169.254.189.44:5173/
-2:50:07 PM [vite] (client) hmr update /src/main.tsx
-2:50:07 PM [vite] (client) hmr invalidate /src/main.tsx Could not Fast Refresh ("true" export is incompatible). Learn more at https://github.com/vitejs/vite-plugin-react/tree/main/packages/plugin-react#consistent-components-exports
-2:50:07 PM [vite] (client) page reload src/main.tsx

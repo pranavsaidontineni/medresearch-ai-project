@@ -1,42 +1,119 @@
-INFO:     Started server process [77662]
+INFO:     Started server process [80104]
 INFO:     Waiting for application startup.
 INFO:     Application startup complete.
 INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
-INFO:     127.0.0.1:59647 - "GET /health HTTP/1.1" 200 OK
-INFO:     127.0.0.1:59693 - "GET /api/v1/library/papers HTTP/1.1" 200 OK
-INFO:     127.0.0.1:59693 - "GET /api/v1/library/papers HTTP/1.1" 200 OK
-INFO:     127.0.0.1:59694 - "GET /api/v1/workspaces HTTP/1.1" 200 OK
-INFO:     127.0.0.1:59693 - "GET /api/v1/workspaces HTTP/1.1" 200 OK
-INFO:     127.0.0.1:59718 - "OPTIONS /api/v1/library/papers HTTP/1.1" 200 OK
-INFO:     127.0.0.1:59720 - "OPTIONS /api/v1/workspaces HTTP/1.1" 200 OK
-INFO:     127.0.0.1:59721 - "OPTIONS /api/v1/library/papers HTTP/1.1" 200 OK
-INFO:     127.0.0.1:59722 - "OPTIONS /api/v1/workspaces HTTP/1.1" 200 OK
-INFO:     127.0.0.1:59726 - "GET /api/v1/workspaces HTTP/1.1" 200 OK
-INFO:     127.0.0.1:59724 - "GET /api/v1/library/papers HTTP/1.1" 200 OK
-INFO:     127.0.0.1:59728 - "GET /api/v1/library/papers HTTP/1.1" 200 OK
-INFO:     127.0.0.1:59726 - "GET /api/v1/workspaces HTTP/1.1" 200 OK
-INFO:     127.0.0.1:59726 - "GET /api/v1/library/papers HTTP/1.1" 200 OK
-INFO:     127.0.0.1:59728 - "GET /api/v1/workspaces HTTP/1.1" 200 OK
-INFO:     127.0.0.1:59724 - "GET /api/v1/library/papers HTTP/1.1" 200 OK
-INFO:     127.0.0.1:59726 - "GET /api/v1/workspaces HTTP/1.1" 200 OK
-INFO:     127.0.0.1:59750 - "GET /api/v1/library/papers HTTP/1.1" 200 OK
-INFO:     127.0.0.1:59751 - "GET /api/v1/workspaces HTTP/1.1" 200 OK
-INFO:     127.0.0.1:59750 - "GET /api/v1/library/papers HTTP/1.1" 200 OK
-INFO:     127.0.0.1:59753 - "GET /api/v1/workspaces HTTP/1.1" 200 OK
-INFO:     127.0.0.1:59753 - "OPTIONS /api/v1/auth/login HTTP/1.1" 200 OK
-INFO:     127.0.0.1:59753 - "POST /api/v1/auth/login HTTP/1.1" 200 OK
-INFO:     127.0.0.1:59753 - "GET /api/v1/library/papers HTTP/1.1" 200 OK
-INFO:     127.0.0.1:59750 - "GET /api/v1/workspaces HTTP/1.1" 200 OK
-INFO:     127.0.0.1:59755 - "OPTIONS /api/v1/papers/search?q=gallbladder&limit=10&offset=0 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:59755 - "GET /api/v1/papers/search?q=gallbladder&limit=10&offset=0 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:59755 - "OPTIONS /api/v1/papers/42579008/summarize HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60318 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60346 - "GET /api/v1/library/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60350 - "GET /api/v1/library/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60347 - "GET /api/v1/workspaces HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60350 - "GET /api/v1/workspaces HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60401 - "GET /api/v1/workspaces HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60400 - "GET /api/v1/library/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60401 - "GET /api/v1/workspaces HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60403 - "GET /api/v1/library/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60406 - "OPTIONS /api/v1/papers/search?q=liver&limit=10&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60406 - "GET /api/v1/papers/search?q=liver&limit=10&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60410 - "OPTIONS /api/v1/papers/42579294/summarize HTTP/1.1" 200 OK
 Warning: there are non-text parts in the response: ['thought_signature'], returning concatenated parsed result from text parts. Check the full candidates.content.parts accessor to get the full model response.
 Warning: there are non-text parts in the response: ['thought_signature'], returning concatenated text result from text parts. Check the full candidates.content.parts accessor to get the full model response.
 Warning: there are non-text parts in the response: ['thought_signature'], returning concatenated text result from text parts. Check the full candidates.content.parts accessor to get the full model response.
-INFO:     127.0.0.1:59755 - "POST /api/v1/papers/42579008/summarize HTTP/1.1" 200 OK
-INFO:     127.0.0.1:59762 - "OPTIONS /api/v1/papers/search?q=gallbladder&limit=10&offset=10 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:59762 - "GET /api/v1/papers/search?q=gallbladder&limit=10&offset=10 HTTP/1.1" 200 OK
-INFO:     Shutting down
-INFO:     Waiting for application shutdown.
-INFO:     Application shutdown complete.
-INFO:     Finished server process [77662]
+INFO:     127.0.0.1:60410 - "POST /api/v1/papers/42579294/summarize HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60414 - "OPTIONS /api/v1/library/papers/39411136 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60414 - "DELETE /api/v1/library/papers/39411136 HTTP/1.1" 204 No Content
+INFO:     127.0.0.1:60414 - "OPTIONS /api/v1/library/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60416 - "OPTIONS /api/v1/workspaces HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60416 - "GET /api/v1/library/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60414 - "GET /api/v1/workspaces HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60414 - "GET /api/v1/workspaces/1/reports HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60428 - "GET /api/v1/library/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60430 - "GET /api/v1/workspaces HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60428 - "GET /api/v1/library/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60432 - "GET /api/v1/workspaces HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60942 - "OPTIONS /api/v1/library/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60943 - "OPTIONS /api/v1/workspaces HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60946 - "OPTIONS /api/v1/library/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60947 - "OPTIONS /api/v1/workspaces HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60946 - "GET /api/v1/library/papers HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:60949 - "GET /api/v1/workspaces HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:60947 - "GET /api/v1/library/papers HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:60949 - "GET /api/v1/workspaces HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:60951 - "OPTIONS /api/v1/auth/login HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60951 - "POST /api/v1/auth/login HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60956 - "GET /api/v1/workspaces HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60951 - "GET /api/v1/library/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60961 - "OPTIONS /api/v1/papers/search?q=cancer&limit=10&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60961 - "GET /api/v1/papers/search?q=cancer&limit=10&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60973 - "POST /api/v1/auth/login HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60973 - "GET /api/v1/library/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60975 - "GET /api/v1/workspaces HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60977 - "OPTIONS /api/v1/papers/search?q=kidney%20failure&limit=10&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60977 - "GET /api/v1/papers/search?q=kidney%20failure&limit=10&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60981 - "OPTIONS /api/v1/papers/42580924/summarize HTTP/1.1" 200 OK
+Warning: there are non-text parts in the response: ['thought_signature'], returning concatenated parsed result from text parts. Check the full candidates.content.parts accessor to get the full model response.
+Warning: there are non-text parts in the response: ['thought_signature'], returning concatenated text result from text parts. Check the full candidates.content.parts accessor to get the full model response.
+Warning: there are non-text parts in the response: ['thought_signature'], returning concatenated text result from text parts. Check the full candidates.content.parts accessor to get the full model response.
+INFO:     127.0.0.1:60981 - "POST /api/v1/papers/42580924/summarize HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60985 - "OPTIONS /api/v1/papers/42580924/citation HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60985 - "GET /api/v1/papers/42580924/citation HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60987 - "OPTIONS /api/v1/library/papers/42580924 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60987 - "POST /api/v1/library/papers/42580924 HTTP/1.1" 201 Created
+INFO:     127.0.0.1:60987 - "GET /api/v1/library/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60989 - "GET /api/v1/workspaces HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60989 - "DELETE /api/v1/library/papers/42580924 HTTP/1.1" 204 No Content
+INFO:     127.0.0.1:60989 - "GET /api/v1/library/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60987 - "GET /api/v1/workspaces HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60991 - "OPTIONS /api/v1/papers/compare HTTP/1.1" 200 OK
+Warning: there are non-text parts in the response: ['thought_signature'], returning concatenated parsed result from text parts. Check the full candidates.content.parts accessor to get the full model response.
+Warning: there are non-text parts in the response: ['thought_signature'], returning concatenated text result from text parts. Check the full candidates.content.parts accessor to get the full model response.
+Warning: there are non-text parts in the response: ['thought_signature'], returning concatenated text result from text parts. Check the full candidates.content.parts accessor to get the full model response.
+INFO:     127.0.0.1:60991 - "POST /api/v1/papers/compare HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60996 - "OPTIONS /api/v1/papers/search?q=caryn%20seney&limit=10&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60996 - "GET /api/v1/papers/search?q=caryn%20seney&limit=10&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61008 - "GET /api/v1/library/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61009 - "GET /api/v1/workspaces HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61008 - "GET /api/v1/library/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61011 - "GET /api/v1/workspaces HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61471 - "OPTIONS /api/v1/library/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61473 - "OPTIONS /api/v1/workspaces HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61475 - "OPTIONS /api/v1/library/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61477 - "OPTIONS /api/v1/workspaces HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61479 - "GET /api/v1/library/papers HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:61481 - "GET /api/v1/workspaces HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:61483 - "GET /api/v1/library/papers HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:61479 - "GET /api/v1/workspaces HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:61527 - "GET /api/v1/library/papers HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:61528 - "GET /api/v1/workspaces HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:61527 - "GET /api/v1/workspaces HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:61530 - "GET /api/v1/library/papers HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:61854 - "OPTIONS /api/v1/library/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61855 - "OPTIONS /api/v1/workspaces HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61857 - "OPTIONS /api/v1/library/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61859 - "OPTIONS /api/v1/workspaces HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61861 - "GET /api/v1/library/papers HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:61863 - "GET /api/v1/workspaces HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:61865 - "GET /api/v1/library/papers HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:61861 - "GET /api/v1/workspaces HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:61938 - "GET /api/v1/library/papers HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:61940 - "GET /api/v1/workspaces HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:61938 - "GET /api/v1/library/papers HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:61940 - "GET /api/v1/workspaces HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:62054 - "GET /api/v1/library/papers HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:62056 - "GET /api/v1/workspaces HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:62054 - "GET /api/v1/library/papers HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:62056 - "GET /api/v1/workspaces HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:62901 - "OPTIONS /api/v1/library/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62902 - "OPTIONS /api/v1/workspaces HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62905 - "OPTIONS /api/v1/library/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62906 - "OPTIONS /api/v1/workspaces HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62908 - "GET /api/v1/library/papers HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:62910 - "GET /api/v1/workspaces HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:62910 - "GET /api/v1/library/papers HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:62908 - "GET /api/v1/workspaces HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:63113 - "OPTIONS /api/v1/library/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63114 - "OPTIONS /api/v1/workspaces HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63117 - "OPTIONS /api/v1/library/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63118 - "OPTIONS /api/v1/workspaces HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63120 - "GET /api/v1/library/papers HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:63122 - "GET /api/v1/workspaces HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:63124 - "GET /api/v1/library/papers HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:63120 - "GET /api/v1/workspaces HTTP/1.1" 401 Unauthorized
