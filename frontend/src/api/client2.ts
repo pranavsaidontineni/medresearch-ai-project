@@ -6,11 +6,21 @@ export function clearToken() { localStorage.removeItem("medresearch_token"); }
 
 async function request<T>(path: string, options: RequestInit = {}): Promise<T> {
   const token = getToken();
+  const hdrs: Record<string,string> = { "Content-Type": "application/json", ...(options.headers as Record<string,string> ?? {}) };
+  if (token) hdrs["Authorization"] = `Bearer ${token}`;
+
   const response = await fetch(`${API_BASE}${path}`, {
     ...options,
-    headers: { "Content-Type": "application/json", ...(token ? { Authorization: `Bearer ${token}` } : {}), ...(options.headers ?? {}) },
+    headers: hdrs,
   });
+
   const body = await response.json().catch(() => ({}));
+
+  if (response.status === 401) {
+    clearToken();
+    throw new Error(body.detail ?? "Invalid or expired token. Please sign in again.");
+  }
+
   if (!response.ok) throw new Error(body.detail ?? "Request failed");
   return body as T;
 }
@@ -40,7 +50,8 @@ export const api = {
   reports: (workspaceId:number) => request<ResearchReport[]>(`/workspaces/${workspaceId}/reports`),
   exportReportMarkdown: async (workspaceId:number, reportId:number) => {
     const token = getToken();
-    const response = await fetch(`${API_BASE}/workspaces/${workspaceId}/reports/${reportId}/markdown`, {headers: token ? {Authorization:`Bearer ${token}`} : {}});
+    const hdrs: Record<string,string> = token ? { Authorization: `Bearer ${token}` } : {};
+    const response = await fetch(`${API_BASE}/workspaces/${workspaceId}/reports/${reportId}/markdown`, {headers: hdrs});
     if (!response.ok) { const body = await response.json().catch(()=>({})); throw new Error(body.detail ?? "Export failed"); }
     return response.text();
   },

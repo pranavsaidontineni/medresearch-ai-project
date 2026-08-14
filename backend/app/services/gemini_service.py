@@ -1,4 +1,6 @@
 import asyncio
+import logging
+import re
 from google import genai
 from google.genai import types
 from google.genai.errors import ClientError
@@ -6,14 +8,17 @@ from app.core.config import get_settings
 from app.schemas.compare import PaperComparison
 from app.schemas.paper import PaperSummary, PatientExplanation
 
+logger = logging.getLogger(__name__)
+
 class GeminiService:
     def __init__(self):
         settings = get_settings()
         if not settings.gemini_api_key:
             raise RuntimeError("GEMINI_API_KEY is not configured")
-        self.model = settings.gemini_model
+        self.model = settings.gemini_model or "gemini-flash-latest"
         self.fallback_models = [
-            model for model in ["gemini-flash-latest", "gemini-2.5-flash"] if model and model != self.model
+            model for model in ["gemini-flash-latest", "gemini-flash-lite-latest"]
+            if model and model != self.model
         ]
         self.client = genai.Client(api_key=settings.gemini_api_key)
 
@@ -29,22 +34,63 @@ class GeminiService:
         )
 
     @staticmethod
-    def _should_fallback(exc: Exception) -> bool:
-        return isinstance(exc, ClientError) and exc.status_code in {400, 404, 429, 500, 502, 503}
+    def _extract_status_code(exc: Exception) -> int | None:
+        status = getattr(exc, "status_code", None)
+        if isinstance(status, int):
+            return status
+        code = getattr(exc, "code", None)
+        if isinstance(code, int):
+            return code
+        text = str(exc)
+        match = re.search(r"(\d{3})\s+[A-Z_]+", text)
+        if match:
+            return int(match.group(1))
+        return None
+
+    @classmethod
+    def _should_fallback(cls, exc: Exception) -> bool:
+        status = cls._extract_status_code(exc)
+        return status in {400, 404, 429, 500, 502, 503} or \
+            ("UNAVAILABLE" in str(exc).upper() or "NOT_FOUND" in str(exc).upper())
 
     async def _run(self, prompt: str, schema):
         last_error = None
         models_to_try = [self.model, *self.fallback_models]
         for model_name in models_to_try:
-            try:
-                response = await asyncio.to_thread(self._generate, prompt, schema, model_name)
-                if not response.text:
-                    raise RuntimeError("Gemini returned an empty response")
-                return schema.model_validate_json(response.text)
-            except Exception as exc:
-                last_error = exc
-                if not self._should_fallback(exc):
+            max_attempts = 3
+            for attempt in range(1, max_attempts + 1):
+                try:
+                    logger.info("Gemini generate_content attempt: model=%s attempt=%d", model_name, attempt)
+                    response = await asyncio.to_thread(self._generate, prompt, schema, model_name)
+                    if not response.text:
+                        raise RuntimeError("Gemini returned an empty response")
+                    return schema.model_validate_json(response.text)
+                except Exception as exc:
+                    last_error = exc
+                    status = self._extract_status_code(exc)
+                    logger.error(
+                        "Gemini error (model=%s) status=%s message=%s repr=%s",
+                        model_name,
+                        status,
+                        str(exc),
+                        repr(exc),
+                    )
+
+                    if not self._should_fallback(exc):
+                        logger.debug("Not falling back after non-retryable error for model=%s: %s", model_name, repr(exc))
+                        break
+
+                    should_retry = status in {429, 500, 502, 503}
+                    if attempt < max_attempts and should_retry:
+                        backoff = 2 ** (attempt - 1)
+                        logger.info("Transient error for model=%s, retrying after %s seconds (attempt %d/%d)", model_name, backoff, attempt + 1, max_attempts)
+                        await asyncio.sleep(backoff)
+                        continue
+
+                    logger.info("Giving up on model=%s after attempt %d due to error", model_name, attempt)
                     break
+            logger.info("Falling back from model=%s to next model", model_name)
+        logger.critical("All Gemini model attempts failed. Tried models=%s. Last error: %s", models_to_try, repr(last_error))
         raise RuntimeError("Gemini request failed") from last_error
 
     async def summarize_paper(self, title: str, abstract: str) -> PaperSummary:

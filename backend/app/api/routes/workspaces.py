@@ -45,6 +45,28 @@ async def get_workspace(workspace_id: int, user: User = Depends(get_current_user
     ws = await owned_workspace(workspace_id, user.id, db)
     return await workspace_payload(ws, db)
 
+@router.patch("/{workspace_id}", response_model=WorkspaceRead)
+async def rename_workspace(workspace_id: int, payload: WorkspaceCreate, user: User = Depends(get_current_user), db: AsyncSession = Depends(get_db)):
+    ws = await owned_workspace(workspace_id, user.id, db)
+    if not payload.name or not payload.name.strip():
+        raise HTTPException(400, "Workspace name cannot be empty")
+    ws.name = payload.name.strip()
+    ws.research_question = payload.research_question.strip() if payload.research_question else ws.research_question
+    await db.commit(); await db.refresh(ws)
+    return await workspace_payload(ws, db)
+
+@router.delete("/{workspace_id}")
+async def delete_workspace(workspace_id: int, user: User = Depends(get_current_user), db: AsyncSession = Depends(get_db)):
+    ws = await owned_workspace(workspace_id, user.id, db)
+    # delete workspace and associated workspace papers and reports
+    from sqlalchemy import delete
+    await db.execute(delete(WorkspacePaper).where(WorkspacePaper.workspace_id == ws.id))
+    # also delete reports
+    await db.execute(delete(ResearchReport).where(ResearchReport.workspace_id == ws.id))
+    await db.delete(ws)
+    await db.commit()
+    return {"status": "deleted"}
+
 @router.post("/{workspace_id}/papers/{pmid}", response_model=WorkspaceRead)
 async def add_paper(workspace_id: int, pmid: str, user: User = Depends(get_current_user), db: AsyncSession = Depends(get_db)):
     ws = await owned_workspace(workspace_id, user.id, db)

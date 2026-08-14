@@ -53,16 +53,23 @@ class PubMedService:
             authors = []
             author_list = article_data.find("AuthorList")
             if author_list is not None:
-                for author in author_list.findall("Author"):
-                    collective = author.findtext("CollectiveName")
-                    if collective:
-                        authors.append(collective)
-                    else:
-                        last = author.findtext("LastName", "")
-                        initials = author.findtext("Initials", "")
-                        name = " ".join(x for x in [last, initials] if x).strip()
-                        if name:
-                            authors.append(name)
+               for author in author_list.findall("Author"):
+                   collective = author.findtext("CollectiveName")
+                   if collective:
+                       authors.append(collective)
+                   else:
+                       last = author.findtext("LastName", "")
+                       initials = author.findtext("Initials", "")
+                       name = " ".join(x for x in [last, initials] if x).strip()
+                       aff = None
+                       aff_info = author.find("AffiliationInfo")
+                       if aff_info is not None:
+                           aff = aff_info.findtext("Affiliation")
+                       if name:
+                           if aff:
+                               authors.append(f"{name} — {aff}")
+                           else:
+                               authors.append(name)
             journal = article_data.findtext("Journal/Title")
             pub_date = article_data.find("Journal/JournalIssue/PubDate")
             publication_date = ""
